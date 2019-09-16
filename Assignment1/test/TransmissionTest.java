@@ -1,30 +1,32 @@
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 
 import vehicle.ManualTransmission;
 import vehicle.RegularManualTransmission;
 import vehicle.RegularManualTransmission.TransmissionStatus;
 
-import static org.junit.Assert.assertEquals;
 
 /**
- * This class is used to test the RegularManualTransmission class.
+ * This class is used to test the public methods of RegularManualTransmission class.
  */
 public class TransmissionTest {
 
   private ManualTransmission transmission;
 
   /**
-   * This test is used to test the invalid arguments of ManualTransmission Constructor
+   * This test is used to test the invalid arguments of ManualTransmission Constructor.
    */
   @Test
   public void invalidArgumentsTest() {
     // parameters for five gears
-    int[] gear1 = new int[]{0, 1};
-    int[] gear2 = new int[]{1, 2};
-    int[] gear3 = new int[]{2, 3};
-    int[] gear4 = new int[]{3, 4};
-    int[] gear5 = new int[]{4, 5};
+    int[] gear1 = {0, 1};
+    int[] gear2 = {1, 2};
+    int[] gear3 = {2, 3};
+    int[] gear4 = {3, 4};
+    int[] gear5 = {4, 5};
 
     // note test1 lx should be no more than hx
     gear2[1] = 0;
@@ -38,6 +40,7 @@ public class TransmissionTest {
     } catch (IllegalArgumentException e) {
       System.out.println("exception: lx should be no more than hx");
     }
+    assertNull(null, transmission);
     gear2[1] = 2;
 
     // note the lower speed for gear 1 should be strictly lesser than that of gear 2, and so on
@@ -50,8 +53,10 @@ public class TransmissionTest {
               gear4[0], gear4[1],
               gear5[0], gear5[1]);
     } catch (IllegalArgumentException e) {
-      System.out.println("exception: the lower speed for gear 1 should be strictly lesser than that of gear 2, and so on");
+      System.out.println("exception: the lower speed for gear 1 should be strictly lesser "
+              + "than that of gear 2, and so on");
     }
+    assertNull(null, transmission);
     gear2[0] = 1;
 
     // note only adjacent-gear ranges may overlap
@@ -66,6 +71,7 @@ public class TransmissionTest {
     } catch (IllegalArgumentException e) {
       System.out.println("exception: only adjacent-gear ranges may overlap");
     }
+    assertNull(null, transmission);
     gear3[0] = 2;
 
     // note there cannot be non-overlapping
@@ -80,20 +86,21 @@ public class TransmissionTest {
     } catch (IllegalArgumentException e) {
       System.out.println("exception: there cannot be non-overlapping");
     }
+    assertNull(null, transmission);
     gear5[0] = 4;
   }
 
   /**
-   * this is to test the valid arguments of ManualTransmission Constructor
+   * this is to test the valid arguments of ManualTransmission Constructor.
    */
   @Test
   public void validArgumentsTest() {
     // parameters for five gears
-    int[] gear1 = new int[]{0, 1};
-    int[] gear2 = new int[]{1, 2};
-    int[] gear3 = new int[]{2, 3};
-    int[] gear4 = new int[]{3, 4};
-    int[] gear5 = new int[]{4, 5};
+    int[] gear1 = {0, 1};
+    int[] gear2 = {1, 2};
+    int[] gear3 = {2, 3};
+    int[] gear4 = {3, 4};
+    int[] gear5 = {4, 5};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -101,23 +108,22 @@ public class TransmissionTest {
             gear3[0], gear3[1],
             gear4[0], gear4[1],
             gear5[0], gear5[1]);
+
+    assertNotEquals(null, transmission);
   }
 
   /**
-   * Test the implementation of increaseSpeed
-   * <p>
-   * when increase 1 successfully, two status 1. OK 2. May Increase gear
-   * <p>
-   * failed to increase 1, 1. reach the maximum speed 2. reach out the speed range of current gear
+   * Test the implementation of increaseSpeed. when increase 1 successfully, two status 1. OK 2. May
+   * Increase gear. failed to increase 1, 1. reach the maximum speed 2. reach out the speed range of
+   * current gear.
    */
   @Test
   public void testIncreaseSpeed() {
-    // parameters for five gears
-    int[] gear1 = new int[]{0, 5};
-    int[] gear2 = new int[]{5, 10};
-    int[] gear3 = new int[]{10, 15};
-    int[] gear4 = new int[]{15, 20};
-    int[] gear5 = new int[]{20, 22};
+    int[] gear1 = {0, 5};
+    int[] gear2 = {5, 10};
+    int[] gear3 = {10, 15};
+    int[] gear4 = {15, 20};
+    int[] gear5 = {20, 22};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -190,17 +196,17 @@ public class TransmissionTest {
   }
 
   /**
-   * when decrease 1 failed, two status 1. minimal speed 2. need to decrease gear first when
-   * increase 1 successfully, two status 1. OK 2. May decrease the gear
+   * when decrease 1 failed, two status 1. minimal speed 2. need to decrease gear first when.
+   * increase 1 successfully, two status 1. OK 2. May decrease the gear.
    **/
   @Test
   public void testDecreaseSpeed() {
     // parameters for five gears
-    int[] gear1 = new int[]{0, 5};
-    int[] gear2 = new int[]{5, 10};
-    int[] gear3 = new int[]{10, 15};
-    int[] gear4 = new int[]{15, 20};
-    int[] gear5 = new int[]{20, 22};
+    int[] gear1 = {0, 5};
+    int[] gear2 = {5, 10};
+    int[] gear3 = {10, 15};
+    int[] gear4 = {15, 20};
+    int[] gear5 = {20, 22};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -216,6 +222,10 @@ public class TransmissionTest {
     transmission.increaseSpeed(); //1
     // OK
     assertEquals(TransmissionStatus.OK.getStatus(), transmission.getStatus());
+
+    transmission.decreaseSpeed();
+    assertEquals(TransmissionStatus.OK.getStatus(), transmission.getStatus());
+    transmission.increaseSpeed(); //1
 
     transmission.increaseSpeed(); //2
     transmission.increaseSpeed(); //3
@@ -234,17 +244,17 @@ public class TransmissionTest {
 
   /**
    * when increase gear by 1 successfully, one status, 1. OK when failed to increase gear by 1 , two
-   * status, 1. need to increase speed 2. maximum gear
+   * status, 1. need to increase speed 2. maximum gear.
    */
   @Test
   public void testIncreaseGear() {
 
     // parameters for five gears
-    int[] gear1 = new int[]{0, 3};
-    int[] gear2 = new int[]{2, 5};
-    int[] gear3 = new int[]{4, 7};
-    int[] gear4 = new int[]{6, 9};
-    int[] gear5 = new int[]{8, 11};
+    int[] gear1 = {0, 3};
+    int[] gear2 = {2, 5};
+    int[] gear3 = {4, 7};
+    int[] gear4 = {6, 9};
+    int[] gear5 = {8, 11};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -265,7 +275,7 @@ public class TransmissionTest {
 
     transmission.increaseSpeed().increaseSpeed().increaseSpeed(); // 5
     transmission.increaseGear();
-    transmission.increaseSpeed().increaseSpeed().increaseGear().increaseSpeed().increaseSpeed(); // 9
+    transmission.increaseSpeed().increaseSpeed().increaseGear().increaseSpeed().increaseSpeed();//9
     transmission.increaseGear();
     assertEquals(5, transmission.getGear());
     // failed to increase gear, maximum gear
@@ -275,15 +285,15 @@ public class TransmissionTest {
 
   /**
    * note when decrease gear by 1 successfully, one status, 1. OK note when failed to decrease gear
-   * by 1 , two status, 1. need to decrease speed 2. minimum gear
+   * by 1 , two status, 1. need to decrease speed 2. minimum gear.
    */
   @Test
   public void testDecreaseGear() {
-    int[] gear1 = new int[]{0, 3};
-    int[] gear2 = new int[]{2, 5};
-    int[] gear3 = new int[]{4, 7};
-    int[] gear4 = new int[]{6, 9};
-    int[] gear5 = new int[]{8, 11};
+    int[] gear1 = {0, 3};
+    int[] gear2 = {2, 5};
+    int[] gear3 = {4, 7};
+    int[] gear4 = {6, 9};
+    int[] gear5 = {8, 11};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -310,15 +320,15 @@ public class TransmissionTest {
   }
 
   /**
-   * Test the API getSpeed()
+   * Test the API getSpeed().
    */
   @Test
   public void testGetSpeed() {
-    int[] gear1 = new int[]{0, 3};
-    int[] gear2 = new int[]{2, 5};
-    int[] gear3 = new int[]{4, 7};
-    int[] gear4 = new int[]{6, 9};
-    int[] gear5 = new int[]{8, 11};
+    int[] gear1 = {0, 3};
+    int[] gear2 = {2, 5};
+    int[] gear3 = {4, 7};
+    int[] gear4 = {6, 9};
+    int[] gear5 = {8, 11};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -382,16 +392,16 @@ public class TransmissionTest {
   }
 
   /**
-   * Test the api getGear() for RegularManualTransmission
+   * Test the api getGear() for RegularManualTransmission.
    */
   @Test
   public void testGetGear() {
     // parameters for five gears
-    int[] gear1 = new int[]{0, 5};
-    int[] gear2 = new int[]{5, 10};
-    int[] gear3 = new int[]{10, 15};
-    int[] gear4 = new int[]{15, 20};
-    int[] gear5 = new int[]{20, 22};
+    int[] gear1 = {0, 5};
+    int[] gear2 = {5, 10};
+    int[] gear3 = {10, 15};
+    int[] gear4 = {15, 20};
+    int[] gear5 = {20, 22};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],
@@ -440,16 +450,16 @@ public class TransmissionTest {
   }
 
   /**
-   * Test the api getStatus() for RegularManualTransmission
+   * Test the api getStatus() for RegularManualTransmission.
    */
   @Test
   public void testGetStatus() {
     // parameters for five gears
-    int[] gear1 = new int[]{0, 3};
-    int[] gear2 = new int[]{2, 5};
-    int[] gear3 = new int[]{4, 7};
-    int[] gear4 = new int[]{6, 9};
-    int[] gear5 = new int[]{8, 11};
+    int[] gear1 = {0, 3};
+    int[] gear2 = {2, 5};
+    int[] gear3 = {4, 7};
+    int[] gear4 = {6, 9};
+    int[] gear5 = {8, 11};
 
     transmission = new RegularManualTransmission(
             gear1[0], gear1[1],

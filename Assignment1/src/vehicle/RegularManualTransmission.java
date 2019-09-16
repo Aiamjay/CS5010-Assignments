@@ -102,6 +102,7 @@ public class RegularManualTransmission implements ManualTransmission {
 
     /**
      * return the description of status.
+     *
      * @return string description of status.
      */
     public String getStatus() {
@@ -148,7 +149,7 @@ public class RegularManualTransmission implements ManualTransmission {
   @Override
   public ManualTransmission decreaseSpeed() {
     currentSpeed -= 1;
-    if (currentSpeed <= 0) {
+    if (currentSpeed < 0) {
       currentSpeed = 0;
       currentStatus = TransmissionStatus.MINIMUM_SPEED;
     } else {

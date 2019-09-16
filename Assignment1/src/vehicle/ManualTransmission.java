@@ -1,5 +1,9 @@
 package vehicle;
 
+/**
+ * Public interface to simulator vehicles behaviors. Speed change,
+ * Gear change and Status of vehicle.
+ */
 public interface ManualTransmission {
 
   /**
