@@ -17,3 +17,13 @@ Formatting my code to meet the standard.
 1. Installed the checkstyle plugin, and use it to correct my code style. (shit code style grading system)
 2. Found a bug and fixed it.
 3. Passed all the test case and fixed all javadoc.
+
+[Sept. 19]
+1. 创建新的作业项目assignment2，以及新的分支
+
+[Sept. 20]
+1. Implemented the ParserValidator and ParserInfoLogger class.
+2. Created some test cases for these two classes
+3. Passed the whole test of handin.
+4. Abstracted these two classes to AbstracParser class to structure code.
+5. Need better improvement.
