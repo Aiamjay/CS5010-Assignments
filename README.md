@@ -27,3 +27,7 @@ Formatting my code to meet the standard.
 3. Passed the whole test of handin.
 4. Abstracted these two classes to AbstracParser class to structure code.
 5. Need better improvement.
+
+[Sept. 25]
+1. Completed the assignment3, with most parts of tests.
+2. need to check the style of code.
