@@ -11,8 +11,11 @@ public class AmountOffCoupon extends AbstractCoupon {
    * @param stackable whether this coupon can used with some other coupon of the same kind.
    * @param off       how much money off per item.
    */
-  public AmountOffCoupon(String itemName, boolean stackable, float off) {
+  public AmountOffCoupon(String itemName, boolean stackable, float off) throws InvalidCouponException {
     super(itemName, stackable);
+    if (off < 0f) {
+      throw new InvalidCouponException(InvalidCouponException.ErrorMsg.INVALID_AMOUNT_OFF_PARAMETER.getErrorMsg());
+    }
     this.amountOffPerUnit = off;
   }
 
@@ -43,8 +46,12 @@ public class AmountOffCoupon extends AbstractCoupon {
   protected AmountOffCoupon stackToAmountOffCoupon(AmountOffCoupon other) {
     // note only both coupon are stackable and both can applied to the same item.
     if (other.stackable && this.stackable && other.itemName.equals(this.itemName)) {
-      return new AmountOffCoupon(this.itemName, true,
-              this.amountOffPerUnit + other.amountOffPerUnit);
+       try {
+         return new AmountOffCoupon(this.itemName, true,
+                 this.amountOffPerUnit + other.amountOffPerUnit);
+       } catch (InvalidCouponException e) {
+         // note guarantee that no error would throw.
+       }
     }
     return null;
   }

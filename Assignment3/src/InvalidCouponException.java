@@ -1,8 +1,8 @@
 public class InvalidCouponException extends Exception {
 
   enum ErrorMsg {
-    INVALID_PERCENT_OFF("Invalid percent off coupon"),
-    INVALID_GET_FREE("The amount of free item after bought should be less than the amount of items bought.");
+    INVALID_AMOUNT_OFF_PARAMETER("The amount of money off could not be negative."),
+    INVALID_PERCENT_OFF("Invalid percent off coupon");
 
     private String msg;
 

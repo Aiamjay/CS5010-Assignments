@@ -37,8 +37,8 @@ public class PercentOffCoupon extends AbstractCoupon {
   protected PercentOffCoupon stackToPercentOffCoupon(PercentOffCoupon other) {
     if (other.stackable && other.itemName.equals(this.itemName) && this.stackable) {
       try {
-        return new PercentOffCoupon(this.itemName, true,
-                Math.min(1.0f, this.percentOff + other.percentOff));
+        float total = Math.min(1.0f, this.percentOff + other.percentOff);
+        return new PercentOffCoupon(this.itemName, !(Math.abs(total - 1.0f) < 0.001), total);
       } catch (InvalidCouponException e) {
         // note there cannot be a exception, since we specifically avoid such exception.
       }

@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 public class PercentCouponTest {
@@ -35,6 +36,8 @@ public class PercentCouponTest {
     assertEquals(0f,
             (coupon1.stack(coupon2)).getDiscountedPrice(1, 10f),
             0.001);
+    // note if coupon percent-off is 100%, then it is not stackable.
+    assertFalse((coupon1.stack(coupon2)).isStackable());
 
     // note different coupon cannot stack
     AmountOffCoupon coupon3 = new AmountOffCoupon("basketball", true, 2f);
@@ -42,7 +45,7 @@ public class PercentCouponTest {
     assertNull(coupon.stack(coupon3));
 
     // note percent-off cannot exceed 100% percent, this can throw an exception.
-    try{
+    try {
       coupon = new PercentOffCoupon("basketball", true, 1.1f);
     } catch (InvalidCouponException e) {
       System.out.println(e);

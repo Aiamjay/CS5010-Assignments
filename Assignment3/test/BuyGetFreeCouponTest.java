@@ -16,11 +16,17 @@ public class BuyGetFreeCouponTest {
     assertEquals(20f, coupon.getDiscountedPrice(22, 1f), 0.01f);
     assertEquals(22f, coupon.getDiscountedPrice(24, 1f), 0.01f);
 
-    // note a stack cannot stack with iteself
-    assertEquals(coupon, coupon.stack(coupon));
-
     // note test get description
     assertEquals("Buy 10 get 1 free for item basketball", coupon.getDescription());
+
+    coupon = new BuyGetFreeCoupon("basketball", true,
+            1, 100);
+    assertEquals(1f, coupon.getDiscountedPrice(2, 1f), 0.01f);
+    assertEquals(1f, coupon.getDiscountedPrice(101, 1f), 0.01f);
+    assertEquals(2f, coupon.getDiscountedPrice(102, 1f), 0.01f);
+
+    // note a stack cannot stack with iteself
+    assertEquals(coupon, coupon.stack(coupon));
 
     // note coupon stack, if one coupon is no stackable
     BuyGetFreeCoupon coupon1 = new BuyGetFreeCoupon("pumpkin", true, 10, 1);
@@ -47,13 +53,9 @@ public class BuyGetFreeCouponTest {
     coupon = new BuyGetFreeCoupon("basketball", true, 10, 1);
     assertNull(coupon.stack(coupon3));
 
-    // note we cannot get more free items than the items we buy.
-    try {
-      coupon = new BuyGetFreeCoupon("basketball", true,
-              10, 11);
-    } catch (InvalidCouponException e) {
-      System.out.println(e);
-    }
-
+    // note different coupon cannot stack
+    AmountOffCoupon coupon4 = new AmountOffCoupon("basketball", true, 10f);
+    coupon = new BuyGetFreeCoupon("basketball", true, 10, 1);
+    assertNull(coupon.stack(coupon4));
   }
 }

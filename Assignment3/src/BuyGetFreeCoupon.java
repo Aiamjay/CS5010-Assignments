@@ -7,9 +7,6 @@ public class BuyGetFreeCoupon extends AbstractCoupon {
 
   public BuyGetFreeCoupon(String itemName, boolean stackable, int amountBuy, int amountFree) throws InvalidCouponException {
     super(itemName, stackable);
-    if (amountFree > amountBuy) {
-      throw new InvalidCouponException(InvalidCouponException.ErrorMsg.INVALID_GET_FREE.getErrorMsg());
-    }
     this.amountBuy = amountBuy;
     this.amountFree = amountFree;
   }
@@ -21,8 +18,10 @@ public class BuyGetFreeCoupon extends AbstractCoupon {
 
   @Override
   public float getDiscountedPrice(int quantity, float oriPrice) {
-    int temp = (quantity / (amountBuy + amountFree));
-    return oriPrice * temp * amountBuy + (quantity - temp * (amountBuy + amountFree));
+
+    int temp = quantity / (amountBuy + amountFree);
+    int remainder = quantity % (amountBuy + amountFree);
+    return oriPrice * temp * amountBuy + (Math.min(amountBuy, remainder) * oriPrice);
   }
 
   @Override
