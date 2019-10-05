@@ -36,3 +36,6 @@ Formatting my code to meet the standard.
 1. BuyGetFreeCoupon, one can buy less and get more.
 2. PercentOffCoupon, when it's 100% percentoff, it's not stackable.
 3. Add some test cases for the above two classes.
+
+[Oct. 4]
+1. Finished assignment4, but still need a lot of improvement.
