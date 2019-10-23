@@ -43,3 +43,6 @@ Formatting my code to meet the standard.
 [Oct. 7]
 1. Finished assignment4 using another design. Must better in logic but use less recursion.
 2. Write almost all the test case for submission.
+
+[Oct. 21]
+Finished assignment05
