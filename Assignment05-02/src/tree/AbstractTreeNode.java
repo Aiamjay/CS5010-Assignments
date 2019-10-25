@@ -4,34 +4,68 @@ import java.util.function.Function;
 
 public abstract class AbstractTreeNode<T> implements TreeNode<T> {
 
-    protected T data;
+  protected T data;
 
-    public AbstractTreeNode(T data) {
-        this.data = data;
-    }
+  /**
+   * Constructor for AbstractTreeNode.
+   *
+   * @param data data
+   */
+  public AbstractTreeNode(T data) {
+    this.data = data;
+  }
 
-    @Override
-    public TreeNode<T> getLeftChild() {
-        return null;
-    }
+  /**
+   * Get the left children.
+   *
+   * @return left children
+   */
+  @Override
+  public TreeNode<T> getLeftChild() {
+    return null;
+  }
 
-    @Override
-    public TreeNode<T> getRightChild() {
-        return null;
-    }
+  /**
+   * Get the right children.
+   *
+   * @return right children
+   */
+  @Override
+  public TreeNode<T> getRightChild() {
+    return null;
+  }
 
-    @Override
-    public <R> TreeNode<R> map(Function<T, R> transform) {
-        return null;
-    }
+  /**
+   * Transform Treenode with type T to TreeNode with type R.
+   *
+   * @param transform transform function.
+   * @param <R>       The target type.
+   * @return TreeNode with type R.
+   */
+  @Override
+  public <R> TreeNode<R> map(Function<T, R> transform) {
+    return null;
+  }
 
-    @Override
-    public <R> R reduce(TriFunction<T, R, R, R> combiner) {
-        return null;
-    }
+  /**
+   * Reduce function take a TriFunction as parameter and then reduce the tree structure.
+   *
+   * @param combiner TriFunction applied to tree node.
+   * @param <R>      the type of result.
+   * @return
+   */
+  @Override
+  public <R> R reduce(TriFunction<T, R, R, R> combiner) {
+    return null;
+  }
 
-    @Override
-    public T getData() {
-        return this.data;
-    }
+  /**
+   * Get the data stored in TreeNode.
+   *
+   * @return the data treenode carrying.
+   */
+  @Override
+  public T getData() {
+    return this.data;
+  }
 }

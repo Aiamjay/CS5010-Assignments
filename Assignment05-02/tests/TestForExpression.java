@@ -22,4 +22,15 @@ public class TestForExpression {
         System.out.println(tree.infix());
         System.out.println(tree.schemeExpression());
     }
+
+    @Test
+    public void testTreeString() {
+        String case1 = "-1 -2 +";
+        ExpressionTree tree = new ExpressionTree(case1);
+        System.out.println(tree.textTree());
+        System.out.println("############################################");
+        String case2 = "1.2 5.4 *     -4.5 +";
+        tree = new ExpressionTree(case2);
+        System.out.println(tree.textTree());
+    }
 }

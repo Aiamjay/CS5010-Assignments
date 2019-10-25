@@ -46,3 +46,7 @@ Formatting my code to meet the standard.
 
 [Oct. 21]
 Finished assignment05
+
+[Oct. 24]
+Fix some bug of assignment5.
+
