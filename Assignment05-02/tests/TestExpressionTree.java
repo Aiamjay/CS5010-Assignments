@@ -53,7 +53,26 @@ public class TestExpressionTree {
   }
 
   @Test
-
-  public 
+  public void testTxt() {
+    String s1 = "   1 2   + 3   4 + *";
+    ExpressionTree test = new ExpressionTree(s1);
+    String s = "*"
+            + "\n|"
+            + "\n|"
+            + "\n|___+\n"
+            + "|   |"
+            + "\n|   |"
+            + "\n|   |___1.0"
+            + "\n|   |"
+            + "\n|   |___2.0\n"
+            + "|\n"
+            + "|___+\n"
+            + "    |\n"
+            + "    |\n"
+            + "    |___3.0\n"
+            + "    |\n"
+            + "    |___4.0";
+    assertEquals(s, test.textTree());
+  }
 }
 

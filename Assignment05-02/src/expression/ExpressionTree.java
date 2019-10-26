@@ -18,21 +18,21 @@ public class ExpressionTree implements Expression {
   private TreeNode root;
 
   private static final TriFunction<String, Double, Double, Double> calculate =
-      (arg1, arg2, arg3) -> numericalCalculate(arg1, arg2, arg3);
+          (arg1, arg2, arg3) -> numericalCalculate(arg1, arg2, arg3);
 
   private static final TriFunction<String, String, String, String> inOrder = (arg1, arg2, arg3)
-      -> "(" + arg2 + arg1 + (arg3.charAt(0) == '-' ? "(" + arg3 + ")" : arg3) + ")";
+          -> "( " + arg2 +" "+arg1+" " + (arg3.charAt(0) == '-' ? "("+" " + arg3 +" "+ ")" : arg3) +" "+ ")";
 
   private static final TriFunction<String, String, String, String> preOrder =
-      (arg1, arg2, arg3) -> "(" + arg1 + " " + arg2 + " " + arg3 + ")";
+          (arg1, arg2, arg3) -> "(" + arg1 + " " + arg2 + " " + arg3 + ")";
   private static final TriFunction<String, String, String, String> treeString =
-      (arg1, arg2, arg3) ->
+          (arg1, arg2, arg3) ->
                   arg1
                           + "\n|"
                           + "\n|"
                           + "\n|___" + arg2.replace("\n", "\n|   ")
                           + "\n|"
-                          + "\n|___" + arg3.replace("\n", "\n|   ");
+                          + "\n|___" + arg3.replace("\n", "\n    ");
 
   /**
    * Constructor for expression tree.

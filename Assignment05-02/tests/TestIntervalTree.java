@@ -44,4 +44,21 @@ public class TestIntervalTree {
     assertEquals("-4,5", new IntervalTree(s).evaluate().toString());
   }
 
+  @Test
+  public void testTxt(){
+    IntervalTree intervalTree = new IntervalTree("-4,4 2,5 U  -1,4 I ");
+    String s ="I\n"
+            +"|\n"
+            +"|\n"
+            +"|___U\n"
+            +"|   |\n"
+            +"|   |\n"
+            +"|   |___-4,4\n"
+            +"|   |\n"
+            +"|   |___2,5\n"
+            +"|\n"
+            +"|___-1,4";
+    assertEquals(s,intervalTree.textTree());
+  }
+
 }
