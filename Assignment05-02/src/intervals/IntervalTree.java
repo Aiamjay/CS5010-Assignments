@@ -9,13 +9,23 @@ import tree.TreeNode;
 import tree.TriFunction;
 import utils.Utils;
 
-
+/**
+ * Interval tree for interval expression calculation.
+ */
 public class IntervalTree implements Intervals {
+  /**
+   * Calculate the final result of interval tree.
+   * @return result, interval object.
+   */
   @Override
   public Interval evaluate() {
     return (Interval) this.root.reduce(calculate);
   }
 
+  /**
+   * Out put the tree formatting string of interval tree.
+   * @return string output
+   */
   @Override
   public String textTree() {
     return (String) this.root.map(e -> e.toString()).reduce(treeExpression);
@@ -36,6 +46,10 @@ public class IntervalTree implements Intervals {
                           + "\n|"
                           + "\n|___" + arg3.replace("\n", "\n    ");
 
+  /**
+   * Constructor for interval tree.
+   * @param expression a postfix string.
+   */
   public IntervalTree(String expression) {
     this.root = Utils.parsingString(expression, string2Interval, INTERVAL_OPERATORS);
   }

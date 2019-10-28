@@ -2,6 +2,10 @@ package tree;
 
 import java.util.function.Function;
 
+/**
+ * Data structure for operand.
+ * @param <T> data type
+ */
 public class Operand<T> extends AbstractTreeNode<T> {
   /**
    * Constructor for Operand.

@@ -53,3 +53,5 @@ Fix some bug of assignment5.
 [Oct. 27]
 Fixed some bugs in assignment05.
 
+[Oct. 27]
+Fixed the style formatting issue.

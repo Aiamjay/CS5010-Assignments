@@ -2,6 +2,10 @@ package tree;
 
 import java.util.function.Function;
 
+/**
+ * Abstract data structure for tree node.
+ * @param <T> data type.
+ */
 public abstract class AbstractTreeNode<T> implements TreeNode<T> {
 
   protected T data;

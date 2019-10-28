@@ -2,6 +2,10 @@ package tree;
 
 import java.util.function.Function;
 
+/**
+ * Data structure for Operator.
+ * @param <T> data type.
+ */
 public class Operator<T> extends AbstractTreeNode<T> {
   private TreeNode left;
   private TreeNode right;
