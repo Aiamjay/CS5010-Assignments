@@ -94,14 +94,14 @@ public final class Utils {
                                            Set<String> validOperators) {
     Scanner scanner = new Scanner(expression.trim());
     Stack<TreeNode> operands = new Stack<>();
-    while (scanner.hasNextLine()) {
+    while (scanner.hasNext()) {
       String current = scanner.next();
       if (validOperators.contains(current)) {
         TreeNode right = operands.pop();
         TreeNode left = operands.pop();
-        operands.add(new Operator(current, left, right));
+        operands.push(new Operator(current, left, right));
       } else {
-        operands.add(new Operand<R>(transformer.apply(current)));
+        operands.push(new Operand<R>(transformer.apply(current)));
       }
     }
     if (operands.size() != 1) {
