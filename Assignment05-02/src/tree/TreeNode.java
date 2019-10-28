@@ -36,7 +36,7 @@ public interface TreeNode<T> {
    *
    * @param combiner TriFunction applied to tree node.
    * @param <R>      the type of result.
-   * @return
+   * @return the reduced result.
    */
   <R> R reduce(TriFunction<T, R, R, R> combiner);
 

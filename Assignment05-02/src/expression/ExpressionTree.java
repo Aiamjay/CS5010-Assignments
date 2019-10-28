@@ -18,15 +18,17 @@ public class ExpressionTree implements Expression {
   private TreeNode root;
 
   private static final TriFunction<String, Double, Double, Double> calculate =
-          (arg1, arg2, arg3) -> numericalCalculate(arg1, arg2, arg3);
+      (arg1, arg2, arg3) -> numericalCalculate(arg1, arg2, arg3);
 
   private static final TriFunction<String, String, String, String> inOrder = (arg1, arg2, arg3)
-          -> "( " + arg2 +" "+arg1+" " + (arg3.charAt(0) == '-' ? "("+" " + arg3 +" "+ ")" : arg3) +" "+ ")";
+      -> "( " + arg2
+          + " " + arg1
+          + " " + (arg3.charAt(0) == '-' ? "(" + " " + arg3 + " " + ")" : arg3) + " " + ")";
 
   private static final TriFunction<String, String, String, String> preOrder =
-          (arg1, arg2, arg3) -> "(" + arg1 + " " + arg2 + " " + arg3 + ")";
+      (arg1, arg2, arg3) -> "(" + arg1 + " " + arg2 + " " + arg3 + ")";
   private static final TriFunction<String, String, String, String> treeString =
-          (arg1, arg2, arg3) ->
+      (arg1, arg2, arg3) ->
                   arg1
                           + "\n|"
                           + "\n|"
@@ -91,6 +93,6 @@ public class ExpressionTree implements Expression {
    */
   @Override
   public String textTree() {
-    return (String) this.root.map(e -> e.toString()).reduce(treeString);
+    return (String) this.root.map(e -> e.toString()).reduce(treeString) + "\n";
   }
 }

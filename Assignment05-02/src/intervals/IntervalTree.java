@@ -25,10 +25,10 @@ public class IntervalTree implements Intervals {
   private TreeNode root;
 
   private static final TriFunction<String, Interval, Interval, Interval> calculate =
-          (arg1, arg2, arg3) -> intervalCalculate(arg1, arg2, arg3);
+      (arg1, arg2, arg3) -> intervalCalculate(arg1, arg2, arg3);
 
   private static final TriFunction<String, String, String, String> treeExpression =
-          (arg1, arg2, arg3) ->
+      (arg1, arg2, arg3) ->
                   arg1
                           + "\n|"
                           + "\n|"

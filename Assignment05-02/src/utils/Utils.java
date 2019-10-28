@@ -97,6 +97,9 @@ public final class Utils {
     while (scanner.hasNext()) {
       String current = scanner.next();
       if (validOperators.contains(current)) {
+        if (operands.size() < 2) {
+          throw new IllegalArgumentException("Invalid expression string");
+        }
         TreeNode right = operands.pop();
         TreeNode left = operands.pop();
         operands.push(new Operator(current, left, right));
